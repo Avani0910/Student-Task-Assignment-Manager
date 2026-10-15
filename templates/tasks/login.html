@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Log in | Student Task Manager{% endblock %}
+{% block content %}
+<section class="auth-card"><p class="eyebrow">WELCOME BACK</p><h1>Log in</h1>
+<p class="muted">Keep your assignments organised in one place.</p>
+<form method="post" class="form-stack">{% csrf_token %}
+{% if form.non_field_errors %}<div class="error">{{ form.non_field_errors }}</div>{% endif %}
+<label for="{{ form.username.id_for_label }}">Username</label>{{ form.username }}{{ form.username.errors }}
+<label for="{{ form.password.id_for_label }}">Password</label>{{ form.password }}{{ form.password.errors }}
+<input type="hidden" name="next" value="{{ next }}">
+<button class="button button-primary full-width" type="submit">Log in</button></form>
+<p class="auth-foot">New here? <a href="{% url 'register' %}">Create an account</a></p></section>
+{% endblock %}

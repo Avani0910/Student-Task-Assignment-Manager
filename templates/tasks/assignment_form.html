@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}{{ page_title }} | Student Task Manager{% endblock %}
+{% block content %}
+<section class="form-page"><a class="back-link" href="{% url 'dashboard' %}">← Back to dashboard</a>
+<div class="form-card"><p class="eyebrow">STAY ON TRACK</p><h1>{{ page_title }}</h1>
+<p class="muted">Enter the details below. You can update them later.</p>
+<form method="post" class="form-stack">{% csrf_token %}
+{% for field in form %}<label for="{{ field.id_for_label }}">{{ field.label }}</label>{{ field }}
+{% if field.help_text %}<small class="help-text">{{ field.help_text }}</small>{% endif %}
+{% if field.errors %}<div class="error">{{ field.errors }}</div>{% endif %}{% endfor %}
+<div class="form-actions"><button class="button button-primary" type="submit">{{ button_label }}</button>
+<a class="button button-light" href="{% url 'dashboard' %}">Cancel</a></div></form></div></section>
+{% endblock %}

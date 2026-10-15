@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Create account | Student Task Manager{% endblock %}
+{% block content %}
+<section class="auth-card"><p class="eyebrow">GET ORGANISED</p><h1>Create account</h1>
+<p class="muted">Sign up to manage your school or college work.</p>
+<form method="post" class="form-stack">{% csrf_token %}
+{% for field in form %}
+<label for="{{ field.id_for_label }}">{{ field.label }}</label>{{ field }}
+{% if field.help_text %}<small class="help-text">{{ field.help_text|safe }}</small>{% endif %}
+{% if field.errors %}<div class="error">{{ field.errors }}</div>{% endif %}
+{% endfor %}
+<button class="button button-primary full-width" type="submit">Create account</button></form>
+<p class="auth-foot">Already registered? <a href="{% url 'login' %}">Log in</a></p></section>
+{% endblock %}

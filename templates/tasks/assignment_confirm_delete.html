@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Delete assignment | Student Task Manager{% endblock %}
+{% block content %}
+<section class="confirm-card"><p class="eyebrow">PLEASE CONFIRM</p><h1>Delete assignment?</h1>
+<p>Are you sure you want to delete <strong>{{ assignment.title }}</strong>? This action cannot be undone.</p>
+<form method="post" class="form-actions">{% csrf_token %}
+<button class="button button-danger" type="submit">Yes, delete it</button>
+<a class="button button-light" href="{% url 'dashboard' %}">Cancel</a></form></section>
+{% endblock %}
